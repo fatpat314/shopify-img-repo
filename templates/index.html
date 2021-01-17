@@ -4,19 +4,21 @@
 {% extends 'bootstrap/base.html' %}
 
 {% block content %}
-    <div class="content">
-        <h3>AWS Photo Repo</h3>
 
-        <div>
-          <h3>Upload your file here:</h3>
-          <form method="POST" action="/upload" enctype=multipart/form-data>
-            <input type=file name=file>
-            <input type=submit class ="btn btn-primary btn-sm" value=Upload>
-          </form>
 
     <div class="container">
         <div class="row">
             <div class="col-12-xs">
+                <div class="content">
+                    <h3>AWS Photo Repo</h3>
+
+                    <div>
+                      <h3>Upload your file here:</h3>
+                      <form method="POST" action="/upload" enctype=multipart/form-data>
+                        <input type=file name=file>
+                        <br>
+                        <input type=submit class ="btn btn-primary btn-sm" value=Upload>
+                      </form>
                 <h3>Bucket Info</h3>
                 <p>Created: {{ my_bucket.creation_date }}</p>
 
