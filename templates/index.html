@@ -1,0 +1,53 @@
+  <head>
+    <title>AWS Photo Repo</title>
+  </head>
+{% extends 'bootstrap/base.html' %}
+
+{% block content %}
+    <div class="content">
+        <h3>AWS Photo Repo</h3>
+
+        <div>
+          <h3>Upload your file here:</h3>
+          <form method="POST" action="/upload" enctype=multipart/form-data>
+            <input type=file name=file>
+            <input type=submit class ="btn btn-primary btn-sm" value=Upload>
+          </form>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12-xs">
+                <h3>Bucket Info</h3>
+                <p>Created: {{ my_bucket.creation_date }}</p>
+
+                <hr>
+
+                <table class='table table-striped'>
+                    <tr>
+                        <th>Filename</th>
+                        <th></th>
+                        <th>Last Modified</th>
+                    </tr>
+                    {% for f in files %}
+                    <tr>
+                        <td>{{ f.key }}</td>
+                        <td><img src="https://shopify-img-repo.s3-us-west-1.amazonaws.com/{{ f.key}}" alt=""><br></td>
+                        <td>{{ f.last_modified }}</td>
+                        <td>
+                            <form class="delete-form" action="{{ url_for('delete') }}" method="post">
+                                <input type="hidden" name="key" value="{{ f.key }}">
+                                <button type="submit" class="btn btn-danger btn-sm" name="button">Delete</button>
+
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
